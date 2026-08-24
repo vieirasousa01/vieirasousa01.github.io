@@ -1,0 +1,9 @@
+title: Blog Computação Visual
+description: Blog da disciplina de Computação Visual
+theme: minima
+show_excerpts: true
+
+permalink: /:categories/:year/:month/:day/:title.html
+
+plugins:
+  - jekyll-feed
