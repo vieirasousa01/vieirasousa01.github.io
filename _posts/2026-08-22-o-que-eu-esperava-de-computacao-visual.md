@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "O que eu esperava de Computação Visual"
-date: 2026-08-25
+date: 2026-08-23
 ---
 
 Computação Visual é matéria obrigatória na minha grade, então nem cheguei a escolher — só vi o nome na ementa e já fui montando uma ideia na cabeça. E, sinceramente, o nome não deixa muita margem pra dúvida, né? "Visual" pra mim soou direto como gráfico, modelagem 3D, arte digital. Imaginei aulas mexendo em softwares de modelagem, entendendo como se cria uma cena em 3D, talvez até um pé na parte mais artística da computação.
