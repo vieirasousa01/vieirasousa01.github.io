@@ -1,8 +1,8 @@
-
-Title: Fundamentos da Imagem e Pixels
-
-Date: 2026-08-18
-
+---
+layout: post
+title: "Fundamentos da Imagem e Pixels"
+date: 2026-08-18
+---
 
 Jogo muitos jogos em 2D, tanto no celular quanto no PC, e boa parte deles tem aquela estética de pixel art bem marcada — os quadradinhos aparecendo na textura, os personagens meio "quadrados" de propósito. Sempre gostei desse estilo, mas nunca tinha parado pra pensar no porquê daquele nome, ou no que exatamente estava vendo quando reparava nos blocos de cor formando um cenário ou um personagem.
 
