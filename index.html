@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog Computação Visual</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#17181c;
+    --paper:#fbfbf9;
+    --line:#dcdcd6;
+    --line-soft:#ececea;
+    --accent:#3452e1;
+    --r:#d65a52;
+    --g:#3f9e66;
+    --b:#3452e1;
+    --muted:#6b6d76;
+    --serif:'Source Serif 4', Georgia, serif;
+    --sans:'Space Grotesk', system-ui, sans-serif;
+    --mono:'JetBrains Mono', ui-monospace, monospace;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--serif);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+
+  /* ---------- pixel mark ---------- */
+  .pixel-mark{
+    display:inline-grid;
+    grid-template-columns:repeat(3, 6px);
+    grid-template-rows:repeat(3, 6px);
+    gap:2px;
+    vertical-align:middle;
+  }
+  .pixel-mark span{display:block; width:6px; height:6px;}
+  .pixel-mark span:nth-child(1){background:var(--r);}
+  .pixel-mark span:nth-child(2){background:var(--ink);}
+  .pixel-mark span:nth-child(3){background:var(--g);}
+  .pixel-mark span:nth-child(4){background:var(--ink);}
+  .pixel-mark span:nth-child(5){background:var(--b);}
+  .pixel-mark span:nth-child(6){background:var(--ink);}
+  .pixel-mark span:nth-child(7){background:var(--g);}
+  .pixel-mark span:nth-child(8){background:var(--ink);}
+  .pixel-mark span:nth-child(9){background:var(--r);}
+
+  /* ---------- header / nav ---------- */
+  header{
+    position:sticky; top:0; z-index:10;
+    background:rgba(251,251,249,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line-soft);
+  }
+  .nav-wrap{
+    max-width:920px; margin:0 auto;
+    padding:16px 24px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .brand{
+    font-family:var(--sans); font-weight:600; font-size:16px;
+    display:flex; align-items:center; gap:10px;
+    text-decoration:none; letter-spacing:-0.01em;
+  }
+  nav ul{list-style:none; display:flex; gap:22px; margin:0; padding:0;}
+  nav a{font-family:var(--sans); font-size:14px; text-decoration:none; color:var(--muted); transition:color .15s;}
+  nav a:hover{color:var(--ink);}
+
+  /* ---------- hero ---------- */
+  .hero{
+    max-width:920px; margin:0 auto;
+    padding:96px 24px 72px;
+    background-image:
+      linear-gradient(var(--line-soft) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+    background-size:28px 28px;
+    background-position:24px 0;
+  }
+  .hero-tag{
+    font-family:var(--mono); font-size:13px; color:var(--muted);
+    margin:0 0 18px;
+  }
+  .hero h1{
+    font-family:var(--sans); font-weight:700;
+    font-size:clamp(36px, 6vw, 58px);
+    line-height:1.08; letter-spacing:-0.02em;
+    margin:0 0 22px; max-width:14ch;
+  }
+  .hero p{
+    font-size:18px; color:var(--muted); max-width:52ch; margin:0;
+  }
+
+  /* ---------- sobre ---------- */
+  .sobre{
+    max-width:640px; margin:0 auto;
+    padding:64px 24px;
+    border-top:1px solid var(--line-soft);
+  }
+  .sobre h2{
+    font-family:var(--sans); font-size:13px; font-weight:600;
+    color:var(--accent); margin:0 0 16px;
+  }
+  .sobre p{font-size:17px; margin:0;}
+
+  /* ---------- posts ---------- */
+  .posts{max-width:920px; margin:0 auto; padding:0 24px 96px;}
+  .post{
+    position:relative;
+    padding:56px 0 56px 56px;
+    border-top:1px solid var(--line);
+  }
+  .post:first-child{border-top:1px solid var(--line);}
+  .post-num{
+    position:absolute; left:0; top:56px;
+    font-family:var(--mono); font-size:13px; color:var(--muted);
+    writing-mode:vertical-rl; text-orientation:mixed;
+  }
+  .post-meta{
+    display:flex; align-items:center; gap:12px;
+    font-family:var(--mono); font-size:12.5px; color:var(--muted);
+    margin-bottom:14px;
+  }
+  .post h3{
+    font-family:var(--sans); font-weight:600;
+    font-size:clamp(22px, 3vw, 30px);
+    letter-spacing:-0.01em;
+    margin:0 0 20px; max-width:22ch;
+  }
+  .post-body{max-width:64ch; font-size:16.5px;}
+  .post-body p{margin:0 0 16px;}
+  .post-body p:last-child{margin-bottom:0;}
+
+  /* ---------- footer ---------- */
+  footer{
+    border-top:1px solid var(--line-soft);
+    padding:32px 24px;
+  }
+  .footer-wrap{
+    max-width:920px; margin:0 auto;
+    display:flex; justify-content:space-between; align-items:center;
+    font-family:var(--mono); font-size:12.5px; color:var(--muted);
+  }
+  .back-top{text-decoration:none; color:var(--muted);}
+  .back-top:hover{color:var(--ink);}
+
+  @media (max-width:640px){
+    .post{padding-left:0;}
+    .post-num{position:static; writing-mode:horizontal-tb; display:block; margin-bottom:10px;}
+    .footer-wrap{flex-direction:column; gap:10px; align-items:flex-start;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <a class="brand" href="#inicio">
+      <span class="pixel-mark"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span>
+      Computação Visual
+    </a>
+    <nav>
+      <ul>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#post-1">Post 01</a></li>
+        <li><a href="#post-2">Post 02</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="inicio">
+  <p class="hero-tag">registro de disciplina · 2026</p>
+  <h1>Da geometria ao pixel: um semestre de Computação Visual</h1>
+  <p>Anotações e reflexões pessoais ao longo da disciplina — o que eu esperava encontrar, o que fui descobrindo, e o que ainda não sei.</p>
+</section>
+
+<section class="sobre" id="sobre">
+  <h2>Sobre este blog</h2>
+  <p>Espaço onde registro, aula a aula, minhas impressões sobre a disciplina de Computação Visual — sem pretensão de resumo técnico, só o que realmente ficou de cada aula.</p>
+</section>
+
+<section class="posts">
+
+  <article class="post" id="post-1">
+    <span class="post-num">01</span>
+    <div class="post-meta">
+      <span>25 ago 2026</span>
+      <span>·</span>
+      <span>expectativa</span>
+    </div>
+    <h3>O que eu esperava de Computação Visual</h3>
+    <div class="post-body">
+      <p>Computação Visual é matéria obrigatória na minha grade, então nem cheguei a escolher — só vi o nome na ementa e já fui montando uma ideia na cabeça. E, sinceramente, o nome não deixa muita margem pra dúvida, né? "Visual" pra mim soou direto como gráfico, modelagem 3D, arte digital. Imaginei aulas mexendo em softwares de modelagem, entendendo como se cria uma cena em 3D, talvez até um pé na parte mais artística da computação.</p>
+      <p>Cheguei na primeira aula com essa expectativa toda montada. E a aula foi sobre geometria.</p>
+      <p>Não uma geometria "de passagem", citada rapidamente — foi o assunto inteiro da aula. Confesso que estranhei um pouco no começo, porque não era exatamente o que eu tinha na cabeça quando pensei em "visual". Mas aos poucos foi ficando claro que faz sentido: antes de chegar em qualquer modelagem 3D ou renderização bonita, tem uma base matemática que sustenta tudo isso, e é por aí que a disciplina parece que vai começar.</p>
+      <p>Ainda é cedo pra saber se essa primeira impressão vai se confirmar ao longo do semestre, mas já ficou claro que "visual" aqui tem menos a ver com estética e mais com a lógica por trás dela.</p>
+    </div>
+  </article>
+
+  <article class="post" id="post-2">
+    <span class="post-num">02</span>
+    <div class="post-meta">
+      <span>18 ago 2026</span>
+      <span>·</span>
+      <span>pixels</span>
+    </div>
+    <h3>Fundamentos da Imagem e Pixels</h3>
+    <div class="post-body">
+      <p>Jogo muitos jogos em 2D, tanto no celular quanto no PC, e boa parte deles tem aquela estética de pixel art bem marcada — os quadradinhos aparecendo na textura, os personagens meio "quadrados" de propósito. Sempre gostei desse estilo, mas nunca tinha parado pra pensar no porquê daquele nome, ou no que exatamente estava vendo quando reparava nos blocos de cor formando um cenário ou um personagem.</p>
+      <p>Na aula sobre pixel, isso ficou bem mais claro. Aquilo que eu sempre chamei de "estilo pixelado" nos jogos não é só uma escolha estética aleatória — é, literalmente, deixar visível a unidade mínima que forma qualquer imagem digital: o pixel. A diferença é que, numa imagem "normal", os pixels são tão pequenos e numerosos que a gente nem percebe que eles existem. Já na pixel art, o jogo usa poucos pixels, bem grandes, de propósito — e é exatamente por isso que dá pra ver os "quadradinhos" com tanta clareza.</p>
+      <p>Foi engraçado perceber que uma coisa que eu já enxergava há anos, jogando, tinha uma explicação tão direta por trás. Às vezes o conceito técnico não é algo novo — só coloca nome no que a gente já vinha vendo sem perceber.</p>
+    </div>
+  </article>
+
+</section>
+
+<footer>
+  <div class="footer-wrap">
+    <span>Blog Computação Visual · atualizado a cada aula</span>
+    <a class="back-top" href="#inicio">voltar ao topo ↑</a>
+  </div>
+</footer>
+
+</body>
+</html>
