@@ -170,6 +170,7 @@
         <li><a href="#sobre">Sobre</a></li>
         <li><a href="#post-1">Post 01</a></li>
         <li><a href="#post-2">Post 02</a></li>
+        <li><a href="#post-3">Post 03</a></li>
       </ul>
     </nav>
   </div>
@@ -216,6 +217,23 @@
       <p>Jogo muitos jogos em 2D, tanto no celular quanto no PC, e boa parte deles tem aquela estética de pixel art bem marcada — os quadradinhos aparecendo na textura, os personagens meio "quadrados" de propósito. Sempre gostei desse estilo, mas nunca tinha parado pra pensar no porquê daquele nome, ou no que exatamente estava vendo quando reparava nos blocos de cor formando um cenário ou um personagem.</p>
       <p>Na aula sobre pixel, isso ficou bem mais claro. Aquilo que eu sempre chamei de "estilo pixelado" nos jogos não é só uma escolha estética aleatória — é, literalmente, deixar visível a unidade mínima que forma qualquer imagem digital: o pixel. A diferença é que, numa imagem "normal", os pixels são tão pequenos e numerosos que a gente nem percebe que eles existem. Já na pixel art, o jogo usa poucos pixels, bem grandes, de propósito — e é exatamente por isso que dá pra ver os "quadradinhos" com tanta clareza.</p>
       <p>Foi engraçado perceber que uma coisa que eu já enxergava há anos, jogando, tinha uma explicação tão direta por trás. Às vezes o conceito técnico não é algo novo — só coloca nome no que a gente já vinha vendo sem perceber.</p>
+    </div>
+  </article>
+  
+  <article class="post" id="post-3">
+    <span class="post-num">03</span>
+    <div class="post-meta">
+      <span>02 out 2026</span>
+      <span>·</span>
+      <span>amostragem &amp; quantização</span>
+    </div>
+    <h3>Amostragem e quantização</h3>
+    <div class="post-body">
+      <p>Uma cena real é contínua: a luz varia suavemente no espaço, sem "degraus" nem pontos definidos. O problema é que um computador não trabalha com contínuo, só com números discretos — então, em algum momento, essa cena precisa ser convertida numa grade finita de valores. É aí que entram dois processos que, até essa aula, eu nunca tinha pensado como coisas separadas: amostragem e quantização.</p>
+      <p>Amostragem é decidir <em>onde</em> medir. O computador escolhe pontos da cena — uma grade — e cada ponto escolhido vira um pixel. Quanto mais pontos, mais fiel a imagem fica ao que existia na cena real; quanto menos pontos, mais grosseira ela parece, porque muita informação simplesmente não foi capturada.</p>
+      <p>Quantização é decidir <em>quanto vale</em> cada medida. A luz captada em cada ponto ainda é um valor contínuo — mas o computador só consegue guardar um número limitado de níveis, como 256 tons numa imagem de 8 bits. Então cada valor medido é arredondado pro nível disponível mais próximo. Com poucos níveis, aparecem transições bruscas entre tons parecidos; com mais níveis, a transição fica suave.</p>
+      <p>A cor entra multiplicando essa lógica: em vez de medir só "quantidade de luz", o sensor mede a intensidade em três canais separados — vermelho, verde e azul — porque é assim que o olho humano também enxerga, combinando três tipos de receptor sensíveis a essas faixas de cor. Cada pixel colorido, no fim, é resultado de três valores quantizados somados.</p>
+      <p>O que ficou mais claro pra mim foi a matemática por trás disso tudo: uma imagem digital é, essencialmente, uma função discreta. Pra cada posição (x, y) na grade existe um valor — ou três, no caso de cor. Amostragem define o tamanho dessa grade; quantização define quantos valores cada posição da grade pode assumir. Resolução, profundidade de cor, tamanho de arquivo — tudo isso nasce dessas duas escolhas.</p>
     </div>
   </article>
 
